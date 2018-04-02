@@ -54,3 +54,10 @@ print "%02x" % 10
 print "%04X" % 10
 # 科学计数法输出浮点型保留2位小数
 print "%.2e" % 1.2999
+
+# %r 与 %s 区别
+# %s ==> str()，比较智能
+# %r ==> repr()，处理较为简单和直接
+s = 'world'
+print "hello %s" % s
+print "hello %r" % s
