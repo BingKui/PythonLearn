@@ -4,12 +4,29 @@
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "读取文件，打印文件内容",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "15.sample.txt"
+            ]
+        },
         {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
             "program": "${file}"
+        },
+        {
+            "name": "Python: 一个参数user_name",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "runserver"
+            ],
         },
         {
             "name": "Python: Attach",
