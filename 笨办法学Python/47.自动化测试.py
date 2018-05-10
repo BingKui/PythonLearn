@@ -1,3 +1,21 @@
+# 为了拒绝 繁重的重复劳动，我们必须写测试用例，让代码来测试代码是否正确
+
+# 简单的测试
+
+# 新建 game.py 文件
+class Room(object):
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        self.paths = {}
+
+    def go(self, direction):
+        return self.paths.get(direction, None)
+
+    def add_paths(self, paths):
+        self.paths.update(paths)
+
+# 修改测试文件
 from nose.tools import *
 from game import Room
 
@@ -9,7 +27,7 @@ def test_room():
 def test_room_paths():
     center = Room("Center", "Test room in the center.")
     north = Room("North", "Test room in the north.")
-    south = Room("South", "Test room in the south.")
+    south Room("South", "Test room in the south.")
 
     center.add_paths({'north': north, 'south': south})
     assert_equal(center.go('north'), north)
@@ -23,7 +41,7 @@ def test_map():
     start.add_paths({'west': west, 'down': down})
     west.add_paths({'east': start})
     down.add_paths({'up': start})
-    
+
     assert_equal(start.go('west').go('east'), start)
     assert_equal(start.go('west'), west)
     assert_equal(start.go('down').go('up'), start)
