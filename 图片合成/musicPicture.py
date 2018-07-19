@@ -51,7 +51,8 @@ def make_qrcode(url, type):
     img.paste(icon, (w,h), icon)
     return img
 
-def merge_img(img_src, name, count, address, author=""):
+def merge_img(img_src, name, count, address, author, type):
+    save_name = './' + name + '.jpg'
     name = unicode(name, 'UTF-8')
     count = unicode("播放量：" + count, 'UTF-8')
     author = unicode("创建人：" + author, 'UTF-8')
@@ -84,7 +85,7 @@ def merge_img(img_src, name, count, address, author=""):
     # 添加播放数
     add_text(background_img, count, 20, (50, 600), color='white')
     # 生成二维码地址
-    qrcode_img = make_qrcode(address, 'qq')
+    qrcode_img = make_qrcode(address, type)
     # 粘贴到背景图上
     box_qrcode = (300, 527, 425, 652)
     print qrcode_img.size, qrcode_img.mode
@@ -93,8 +94,13 @@ def merge_img(img_src, name, count, address, author=""):
     region_qrcode = region_qrcode.resize((box_qrcode[2] - box_qrcode[0], box_qrcode[3] - box_qrcode[1]))
     background_img.paste(region_qrcode, box_qrcode)
     # 保存图片
-    background_img.save('./out.jpg')
+    background_img.save(save_name)
 
-url = 'https://p.qpic.cn/music_cover/xCubmCUxl5icKI16GSM3EXibUJ7Fq7ibq3pIO2ljRa94V56BflX5Yze4w/300?n=1'
-address = 'https://y.qq.com/n/yqq/playsquare/2345289098.html#stat=y_new.playlist.pic_click'
-merge_img(url, '全是回忆！那些年火到不行的校园情歌', '1156.4万', address, author="安多")
+img_one = 'https://p.qpic.cn/music_cover/1Fr9IFMhWDPeUzWKVEjn3VLzce1PenAOaaImqzoibx2iaE5rhV0RwMYA/300?n=1'
+img_two = 'http://p1.music.126.net/wpahk9cQCDtdzJPE52EzJQ==/109951163271025942.jpg?param=140y140'
+address_one = 'https://y.qq.com/n/yqq/playsquare/2643652402.html#stat=y_new.playlist.pic_click'
+address_two = 'https://music.163.com/#/playlist?id=2201879658'
+name_one = '回头率最高的50首手机铃声'
+name_two = '你的青春里有没有属于你的一首歌？'
+merge_img(img_one, name_one, '4622.8万', address_one, author="Harry", type="qq")
+merge_img(img_two, name_two, '2428万', address_two, author="mayuko然", type="netease")
